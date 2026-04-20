@@ -785,28 +785,28 @@
         };
 
         const basicStrokes = [
-            { name: '点', py: 'diǎn', pt: 'Ponto', ex: '不' },
-            { name: '横', py: 'héng', pt: 'Traço horizontal', ex: '不' },
-            { name: '竖', py: 'shù', pt: 'Traço vertical', ex: '不' },
-            { name: '撇', py: 'piě', pt: 'Curva à esquerda', ex: '八' },
-            { name: '捺', py: 'nà', pt: 'Curva à direita', ex: '八' },
-            { name: '提', py: 'tí', pt: 'Ascendente', ex: '汉' },
-            { name: '横钩', py: 'hénggōu', pt: 'Horizontal c/ gancho', ex: '你' },
-            { name: '竖钩', py: 'shùgōu', pt: 'Vertical c/ gancho', ex: '小' },
-            { name: '斜钩', py: 'xiégōu', pt: 'Inclinado c/ gancho', ex: '我' },
-            { name: '竖提', py: 'shùtí', pt: 'Vertical ascendente', ex: '很' },
-            { name: '横折', py: 'héngzhé', pt: 'Horizontal dobrado', ex: '口' },
-            { name: '竖折', py: 'shùzhé', pt: 'Vertical dobrado', ex: '画' },
-            { name: '撇点', py: 'piědiǎn', pt: 'Curva à esq. c/ ponto', ex: '好' },
-            { name: '撇折', py: 'piězhé', pt: 'Curva dobrada', ex: '去' },
-            { name: '横撇', py: 'héngpiě', pt: 'Horizontal p/ curva', ex: '水' },
-            { name: '竖弯', py: 'shùwān', pt: 'Vertical curvo', ex: '四' },
-            { name: '横折钩', py: 'héngzhégōu', pt: 'Horiz. dobrado c/ gancho', ex: '习' },
-            { name: '竖弯钩', py: 'shùwāngōu', pt: 'Vertical curvo c/ gancho', ex: '儿' },
-            { name: '横折提', py: 'héngzhétí', pt: 'Horiz. dobrado ascendente', ex: '语' },
-            { name: '竖折折钩', py: 'shùzhézhégōu', pt: 'Vert. dupla dobra c/ gancho', ex: '吗' },
-            { name: '横折弯撇', py: 'héngzhéwānpiě', pt: 'Horiz. dobrado curvo esq.', ex: '这' },
-            { name: '横折弯钩', py: 'héngzhéwāngōu', pt: 'Horiz. dobrado curvo c/ gancho', ex: '九' }
+            { name: '点', py: 'diǎn', pt: 'Ponto', ex: '不', num: 3 },
+            { name: '横', py: 'héng', pt: 'Traço horizontal', ex: '不', num: 0 },
+            { name: '竖', py: 'shù', pt: 'Traço vertical', ex: '不', num: 2 },
+            { name: '撇', py: 'piě', pt: 'Curva à esquerda', ex: '八', num: 0 },
+            { name: '捺', py: 'nà', pt: 'Curva à direita', ex: '八', num: 1 },
+            { name: '提', py: 'tí', pt: 'Ascendente', ex: '汉', num: 2 },
+            { name: '横钩', py: 'hénggōu', pt: 'Horizontal c/ gancho', ex: '你', num: 3 },
+            { name: '竖钩', py: 'shùgōu', pt: 'Vertical c/ gancho', ex: '小', num: 0 },
+            { name: '斜钩', py: 'xiégōu', pt: 'Inclinado c/ gancho', ex: '我', num: 4 },
+            { name: '竖提', py: 'shùtí', pt: 'Vertical ascendente', ex: '很', num: 6 },
+            { name: '横折', py: 'héngzhé', pt: 'Horizontal dobrado', ex: '口', num: 1 },
+            { name: '竖折', py: 'shùzhé', pt: 'Vertical dobrado', ex: '山', num: 1 },
+            { name: '撇点', py: 'piědiǎn', pt: 'Curva à esq. c/ ponto', ex: '好', num: 0 },
+            { name: '撇折', py: 'piězhé', pt: 'Curva dobrada', ex: '去', num: 3 },
+            { name: '横撇', py: 'héngpiě', pt: 'Horizontal p/ curva', ex: '水', num: 1 },
+            { name: '竖弯', py: 'shùwān', pt: 'Vertical curvo', ex: '四', num: 3 },
+            { name: '横折钩', py: 'héngzhégōu', pt: 'Horiz. dobrado c/ gancho', ex: '习', num: 0 },
+            { name: '竖弯钩', py: 'shùwāngōu', pt: 'Vertical curvo c/ gancho', ex: '儿', num: 1 },
+            { name: '横折提', py: 'héngzhétí', pt: 'Horiz. dobrado ascendente', ex: '语', num: 1 },
+            { name: '竖折折钩', py: 'shùzhézhégōu', pt: 'Vert. dupla dobra c/ gancho', ex: '吗', num: 4 },
+            { name: '横折弯撇', py: 'héngzhéwānpiě', pt: 'Horiz. dobrado curvo esq.', ex: '这', num: 5 },
+            { name: '横折弯钩', py: 'héngzhéwāngōu', pt: 'Horiz. dobrado curvo c/ gancho', ex: '九', num: 1 }
         ];
 
         let currentMode = 'practice';
@@ -1052,6 +1052,11 @@
                 }
                 drawColor = '#1d1d1f'; 
                 radColor = '#1d1d1f';
+            } else if(currentMode === 'strokes') {
+                targetDiv.style.backgroundImage = '';
+                targetDiv.classList.add('grid-bg-standard');
+                drawColor = '#b5b5ba'; // Cor neutra para traços sem foco
+                radColor = '#b5b5ba'; 
             } else {
                 targetDiv.style.backgroundImage = '';
                 targetDiv.classList.add('grid-bg-standard');
@@ -1067,7 +1072,21 @@
             });
 
             if(currentMode === 'strokes') {
-                setTimeout(() => hanziWriterInstance.animateCharacter(), 300);
+                // Destacar exclusivamente o traço estudado em azul após carregar o SVG
+                hanziWriterInstance.setCharacter(character).then(() => {
+                    const targetNum = basicStrokes[currentItemIndex].num;
+                    const svg = document.querySelector('#character-target svg');
+                    if (svg) {
+                        const groups = svg.querySelectorAll('g');
+                        groups.forEach(g => {
+                            const paths = Array.from(g.children).filter(el => el.tagName.toLowerCase() === 'path');
+                            if (paths.length > targetNum) {
+                                paths[targetNum].style.fill = '#0066cc'; // Azul de destaque
+                            }
+                        });
+                    }
+                    setTimeout(() => hanziWriterInstance.animateCharacter(), 300);
+                });
             }
         }
 
